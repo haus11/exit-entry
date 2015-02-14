@@ -40,14 +40,12 @@ angular.module('exitEntryApp')
 
 
     notificationService.openRestaurant()
-      .then(function(data) {
-        if (data.value === 'yes')
-        {
-          return notificationService.requestRestaurantName();
-        }
-        return false;
+      .then(function() {
+        return notificationService.requestRestaurantName();
       })
       .then(function(data) {
+        // Todo: Send restaurant name to api
         console.log(data.value);
-      });
+      })
+      .catch();
   });
