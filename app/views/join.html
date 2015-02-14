@@ -1,0 +1,10 @@
+<div class="text-center">
+    <div class="input-group">
+        <div class="input-control text-center"><h1>GameID: {{ gameId }}</h1></div>
+        <div class="input-control text-center"><input type="text" ng-model="playerName" placeholder="Name" maxlength="10"></div>
+    </div>
+    <button class="btn btn-large btn-secondary"
+            ng-click="joinGame()"
+            ng-disabled="isJoinGameButtonDisabled || !playerName">{{ buttonLabelJoin | uppercase }}
+    </button>
+</div>
