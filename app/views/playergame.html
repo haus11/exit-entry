@@ -1,8 +1,8 @@
 <div class="text-center playergame-section">
     <div class="information-panel text-left">
-        <p>Current session: <strong>{{ currentSession }}</strong></p>
-        <p>Current round: <strong>{{ currentRound }}</strong></p>
-        <p>Open restaurants: <strong>{{ currentOpenRestaurants.length }}</strong></p>
+        <p>Session: <strong>{{ currentSession }}</strong>
+        Round: <strong>{{ currentRound }}</strong></p>
+        <p>Restaurants: <strong>{{ currentOpenRestaurants.length }}</strong></p>
         <p>Buyer Value: <strong>{{ buyerValue }}</strong></p>
     </div>
     <div>
@@ -12,7 +12,7 @@
             <a ng-repeat="restaurant in currentOpenRestaurants" class="list-group-item restaurant-item">
                 <div class="restaurant">
                     <span class="title"><strong>{{ restaurant.title }}</strong></span>
-                    <span class="badge price">{{ restaurant.currentPrice }} €</span>
+                    <span class="badge price pull-right">{{ restaurant.currentPrice }} €</span>
                 </div>
             </a>
         </div>
