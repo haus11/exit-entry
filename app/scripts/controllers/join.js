@@ -8,7 +8,7 @@
  * Controller of the exitEntryApp
  */
 angular.module('exitEntryApp')
-  .controller('JoinCtrl', function ($routeParams, $scope, $location, dataService, notificationService) {
+  .controller('JoinCtrl', function ($routeParams, $scope, $location, dataService) {
     // -----------------------------------------------------------------------------
     // Get game id from url
     // -----------------------------------------------------------------------------
@@ -17,23 +17,16 @@ angular.module('exitEntryApp')
     $scope.isJoinGameButtonDisabled = false;
     $scope.buttonLabelJoin          = 'Join Game';
 
+    dataService.setIsGameMaster(false);
 
     $scope.joinGame = function() {
       $scope.isJoinGameButtonDisabled = true;
       $scope.buttonLabelJoin = 'Joining..';
 
-      // -----------------------------------------------------------------------------
-      // Connect to server
-      // -----------------------------------------------------------------------------
-      dataService.joinGame({ gameId: $scope.gameId, playerName: $scope.playerName })
-        .then(function() {
-          $location.path('/playergame');
-        })
-        .catch(function(reason) {
-          notificationService.notify($scope, 'Info', reason);
+      dataService.setPlayerName($scope.playerName);
+      dataService.setGameId($scope.gameId);
 
-          $scope.isJoinGameButtonDisabled = false;
-          $scope.buttonLabelJoin          = 'Join Game';
-        });
+      $location.path('/lobby');
+
     };
   });

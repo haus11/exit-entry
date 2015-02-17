@@ -34,6 +34,14 @@ angular
         templateUrl: 'views/join.html',
         controller: 'JoinCtrl'
       })
+      .when('/creategame', {
+        templateUrl: 'views/creategame.html',
+        controller: 'CreategameCtrl'
+      })
+      .when('/lobby', {
+        templateUrl: 'views/lobby.html',
+        controller: 'LobbyCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

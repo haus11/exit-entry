@@ -13,12 +13,15 @@ angular.module('exitEntryApp')
     return {
       event: {
         out: {
-          joinGame: '/game/:id/join',
-          openRestaurant: 'api/server/restaurant'
+          joinGame          : '/game/:id/join',
+          openRestaurant    : 'api/server/restaurant'
         },
         in: {
-          newRestaurant:   'restaurant:new',
-          removeRestaurant: 'restaurant:remove'
+          newRestaurant     : 'restaurant:new',
+          removeRestaurant  : 'restaurant:remove',
+          playerJoined      : 'game:playerJoined',
+          playerLeaved      : 'game:playerLeaved',
+          playerReconnected : ''
         }
       }
     };

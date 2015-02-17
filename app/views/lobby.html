@@ -1,0 +1,10 @@
+<div class="container text-center">
+  <h3>Lobby <small>{{lobbyData.gameName}}</small></h3>
+  <h4>{{lobbyData.numberOfPlayers}} of {{lobbyData.playerMax}} players joined the game</h4>
+
+  <div ng-repeat="player in lobbyData.playerList">
+    <span >{{player.name}}</span>
+  </div>
+
+  <button class="btn btn-warning row row-buffer" ng-click="startGame();" ng-show="isGameMaster">StartGame</button>
+</div>
