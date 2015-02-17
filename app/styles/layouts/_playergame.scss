@@ -1,26 +1,5 @@
-.playergame-section {
-  margin: 0 auto;
-  max-width: 780px;
-}
-
-.restaurant-list {
-  text-align: left;
-  list-style: none;
-  padding: 0;
-  max-width: 780px;
-  font-size: 14px;
-}
-
-.restaurant {
-  .title {
-    width: 250px;
-  }
-  .owner {
-    padding-right: 50px;
-  }
-  .price {
-    font-size: 14px;
-    background-color: #333;
-    float: right;
-  }
+.input-username {
+  max-width: 300px;
+  margin: 20px auto;
+  font-size: 16px;
 }

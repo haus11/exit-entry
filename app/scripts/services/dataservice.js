@@ -27,13 +27,8 @@ angular.module('exitEntryApp')
         if (typeof(payload.gameId)     === 'undefined') { $log.info('Game ID ist not set.'); }
         if (typeof(payload.playerName) === 'undefined') { $log.info('Player name ist not set.'); }
 
-        var networkData = {
-          gameId : payload.gameId,
-          name   : payload.playerName
-        };
-
         return $q(function (resolve, reject) {
-          connectionService.put(configData.event.out.joinGame, networkData)
+          connectionService.put(configData.event.out.joinGame.replace(':id', payload.gameId), { gameID: payload.gameId, username: payload.playerName })
             .then(function(data) {
               playerName = payload.playerName;
               gameId     = payload.gameId;

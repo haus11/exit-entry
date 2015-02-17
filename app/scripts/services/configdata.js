@@ -13,7 +13,7 @@ angular.module('exitEntryApp')
     return {
       event: {
         out: {
-          joinGame: '/api/server/join',
+          joinGame: '/game/:id/join',
           openRestaurant: 'api/server/restaurant'
         },
         in: {
