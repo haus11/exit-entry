@@ -8,6 +8,8 @@
  * Controller of the exitEntryApp
  */
 angular.module('exitEntryApp')
-  .controller('MainCtrl', function () {
+  .controller('MainCtrl', function ($scope, $location, dataService) {
 
+    dataService.setIsGameMaster(true);
+    $location.path('creategame');
   });

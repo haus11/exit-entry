@@ -10,11 +10,40 @@
 angular.module('exitEntryApp')
   .service('dataService', function ($log, $q, $rootScope, connectionService, configData) {
     var playerName     = '';
+    var gameName       = '';
     var gameId         = 0;
     var buyerValue     = 0;
     var currentSession = 1;
+    var isGameMaster   = false;
+    var playerMax      = 0;
 
     return {
+
+      getGameId: function () {
+        return gameId;
+      },
+
+      setGameId: function (_gameId) {
+        gameId = _gameId;
+      },
+
+      getPlayerName: function () {
+        return playerName;
+      },
+
+      setPlayerName: function (_playerName) {
+        playerName = _playerName;
+      },
+
+
+      getGameName: function () {
+        return gameName;
+      },
+
+      setGameName: function (_gameName) {
+        gameName = _gameName;
+      },
+
       getCurrentSession: function() {
         return currentSession;
       },
@@ -22,6 +51,23 @@ angular.module('exitEntryApp')
       getBuyerValue: function() {
         return buyerValue;
       },
+
+      isGameMaster: function () {
+        return isGameMaster;
+      },
+
+      setIsGameMaster: function (_gameMaster) {
+        isGameMaster = _gameMaster;
+      },
+
+      getPlayerMax: function () {
+        return playerMax;
+      },
+
+      setPlayerMax: function (_playerMax) {
+        playerMax = _playerMax;
+      },
+
 
       joinGame : function(payload) {
         if (typeof(payload.gameId)     === 'undefined') { $log.info('Game ID ist not set.'); }
