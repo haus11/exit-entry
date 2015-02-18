@@ -8,7 +8,7 @@
  * Controller of the exitEntryApp
  */
 angular.module('exitEntryApp')
-  .controller('JoinCtrl', function ($routeParams, $scope, $location, dataService) {
+  .controller('JoinCtrl', function ($routeParams, $scope, $location, dataService, configData) {
     // -----------------------------------------------------------------------------
     // Get game id from url
     // -----------------------------------------------------------------------------
@@ -26,7 +26,7 @@ angular.module('exitEntryApp')
       dataService.setPlayerName($scope.playerName);
       dataService.setGameId($scope.gameId);
 
-      $location.path('/lobby');
+      $location.path(configData.routes.lobby);
 
     };
   });
