@@ -1,10 +1,24 @@
 <div class="text-center playergame-section">
-    <div class="information-panel text-left">
-        <p>Session: <strong>{{ currentSession }}</strong>
-        Round: <strong>{{ currentRound }}</strong></p>
-        <p>Restaurants: <strong>{{ currentOpenRestaurants.length }}</strong></p>
-        <p>Buyer Value: <strong>{{ buyerValue }}</strong></p>
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="information-panel text-left">
+                <p>Session: <strong>{{ currentSession }}</strong></p>
+                <p>Round: <strong>{{ currentRound }}</strong></p>
+                <p>Restaurants: <strong>{{ currentOpenRestaurants.length }}</strong></p>
+                <p>Buyer Value: <strong>{{ buyerValue }}</strong></p>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <p><strong>My Restaurant:</strong></p>
+            <p>Current advertised price per meal:</p>
+            <div class="text-center">
+                <button class="btn btn-default" ng-click=""><span class="fa fa-plus"></span></button>
+                <b class="number-between-buttons">15</b>
+                <button class="btn btn-default" ng-click=""><span class="fa fa-minus"></span></button>
+            </div>
+        </div>
     </div>
+
     <div>
         <h2>Choose a restaurant to eat:</h2>
         <div class="list-group restaurant-list">
