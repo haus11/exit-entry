@@ -33,9 +33,10 @@ angular.module('exitEntryApp')
       // -----------------------------------------------------------------------------
       dataService.joinGame({ gameId: dataService.getGameId(), playerName: dataService.getPlayerName() })
         .then(function(_data) {
-          $scope.lobbyData.playerList      = _data.user;
-          $scope.lobbyData.playerMax       = _data.playerMax;
-          $scope.lobbyData.numberOfPlayers = _data.user.length;
+          $scope.lobbyData.gameName        = _data.game.name;
+          $scope.lobbyData.playerList      = _data.game.user;
+          $scope.lobbyData.playerMax       = _data.game.playerMax;
+          $scope.lobbyData.numberOfPlayers = _data.game.user.length - 1;
         })
         .catch(function(reason) {
           notificationService.notify($scope, 'Info', reason);

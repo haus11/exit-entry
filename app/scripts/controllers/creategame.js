@@ -8,7 +8,7 @@
  * Controller of the exitEntryApp
  */
 angular.module('exitEntryApp')
-  .controller('CreategameCtrl', function ($scope, $log, $location, dataService, connectionService, notificationService) {
+  .controller('CreategameCtrl', function ($scope, $log, $location, dataService, connectionService, notificationService, configData) {
 
     $scope.inputData =
     {
@@ -32,15 +32,15 @@ angular.module('exitEntryApp')
         'playerMax'  : $scope.inputData.playerMax
       };
 
-      connectionService.post('/game', postData)
+      connectionService.post(configData.event.out.createGame, postData)
         .then(function (_data) {
 
-          dataService.setGameName(_data.name);
-          dataService.setPlayerMax(_data.playerMax);
-          dataService.setGameId(_data.id);
+          dataService.setGameName(_data.game.name);
+          dataService.setPlayerMax(_data.game.playerMax);
+          dataService.setGameId(_data.game.id);
 
           console.log(_data);
-          $location.path('/lobby');
+          $location.path(configData.routes.lobby);
         })
         .catch(function (_reason) {
           notificationService.notify($scope, 'Info', _reason);

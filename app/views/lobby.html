@@ -2,7 +2,7 @@
   <h3>Lobby <small>{{lobbyData.gameName}}</small></h3>
   <h4>{{lobbyData.numberOfPlayers}} of {{lobbyData.playerMax}} players joined the game</h4>
 
-  <div ng-repeat="player in lobbyData.playerList">
+  <div ng-repeat="player in lobbyData.playerList" class="row-buffer">
     <span >{{player.name}}</span>
   </div>
 

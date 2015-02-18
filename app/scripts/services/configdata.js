@@ -13,6 +13,7 @@ angular.module('exitEntryApp')
     return {
       event: {
         out: {
+          createGame        : '/game',
           joinGame          : '/game/:id/join',
           openRestaurant    : 'api/server/restaurant'
         },
@@ -27,6 +28,13 @@ angular.module('exitEntryApp')
           addedRestaurant   : 'addedRestaurant',
           removedRestaurant : 'removedRestaurant'
         }
+      },
+      routes: {
+        base        : '/',
+        join        : '/join/:gameId',
+        lobby       : '/lobby',
+        createGame  : '/creategame',
+        playerGame  : 'playergame'
       }
     };
   });
