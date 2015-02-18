@@ -27,7 +27,7 @@ angular.module('exitEntryApp')
 
     $scope.createGame = function () {
       var postData = {
-        'secret'     : 'entryexit',
+        'secret'     : 'exitentry',
         'name'       : $scope.inputData.gameName,
         'playerMax'  : $scope.inputData.playerMax
       };

@@ -42,6 +42,10 @@ angular
         templateUrl: 'views/lobby.html',
         controller: 'LobbyCtrl'
       })
+      .when('/restaurant', {
+        templateUrl: 'views/restaurant.html',
+        controller: 'RestaurantCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

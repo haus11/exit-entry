@@ -16,8 +16,8 @@ angular.module('exitEntryApp')
     // connect to the server here.
     // -----------------------------------------------------------------------------
     io.sails.autoConnect = false;
-    //io.sails.url = 'http://localhost:1338';
-    io.sails.url = 'http://192.168.0.102:1338';
+    io.sails.url = 'http://localhost:1338';
+    //io.sails.url = 'http://192.168.0.102:1338';
 
     var socket = io.sails.connect();
 
