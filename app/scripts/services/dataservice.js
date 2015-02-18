@@ -8,7 +8,7 @@
  * Service in the exitEntryApp.
  */
 angular.module('exitEntryApp')
-  .service('dataService', function ($log, $q, $rootScope, connectionService, configData) {
+  .service('dataService', function ($rootScope, $log, $q, connectionService, configData) {
     var playerName     = '';
     var gameName       = '';
     var gameId         = 0;
@@ -16,6 +16,7 @@ angular.module('exitEntryApp')
     var currentSession = 1;
     var isGameMaster   = false;
     var playerMax      = 0;
+    var openRestaurants = [];
 
     return {
 
@@ -68,6 +69,30 @@ angular.module('exitEntryApp')
         playerMax = _playerMax;
       },
 
+      getOpenRestaurants: function () {
+        return openRestaurants;
+      },
+
+      setOpenRestaurants: function(_openRestaurants) {
+        openRestaurants = _openRestaurants;
+      },
+
+      addRestaurant: function(_restaurant) {
+        openRestaurants.push(_restaurant);
+        $rootScope.$broadcast(configData.events.bc.addRestaurant, _restaurant);
+      },
+
+      removeRestaurant: function(_restaurant) {
+        for (var indexOfRestaurant = 0; indexOfRestaurant < openRestaurants.length; indexOfRestaurant++)
+        {
+          if (openRestaurants[indexOfRestaurant].id === _restaurant.id)
+          {
+            openRestaurants.splice(indexOfRestaurant, 1);
+            $rootScope.$broadcast(configData.events.bc.removedRestaurant);
+            break;
+          }
+        }
+      },
 
       joinGame : function(payload) {
         if (typeof(payload.gameId)     === 'undefined') { $log.info('Game ID ist not set.'); }

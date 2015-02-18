@@ -23,6 +23,10 @@ angular.module('exitEntryApp')
           playerJoined      : 'game:playerJoined',
           playerLeaved      : 'game:playerLeaved',
           playerReconnected : ''
+        },
+        bc: {
+          addedRestaurant   : 'addedRestaurant',
+          removedRestaurant : 'removedRestaurant'
         }
       },
       routes: {

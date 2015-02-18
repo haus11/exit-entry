@@ -1,5 +1,10 @@
 <div class="ngdialog-inner text-center">
-    <p class="dialog-message">Would you like to open a new restaurant?</p>
+    <p class="dialog-message">Would you like to open a new restaurant with the following conditions?</p>
+    <div class="text-left restaurant-dialog-conditions">
+        <strong>20$</strong> Fix costs<br>
+        <strong>5$</strong> Variable costs
+    </div>
+
     <button class="btn btn-default btn-dialog btn-dialog-open-restaurant" ng-click="closeThisDialog('yes')">YES</button>
     <button class="btn btn-default btn-dialog btn-dialog-open-restaurant" ng-click="closeThisDialog('no')">NO</button>
 </div>
