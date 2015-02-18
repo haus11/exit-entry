@@ -19,7 +19,7 @@ angular.module('exitEntryApp')
 
     });
 
-    /*notificationService.openRestaurant()
+    notificationService.openRestaurant()
       .then(function() {
         return notificationService.requestRestaurantName();
       })
@@ -27,5 +27,5 @@ angular.module('exitEntryApp')
         // Todo: Send restaurant name to api
         console.log(data.value);
       })
-      .catch();*/
+      .catch();
   });

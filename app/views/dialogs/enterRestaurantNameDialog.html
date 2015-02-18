@@ -1,5 +1,23 @@
 <div class="ngdialog-inner text-center">
-    <p class="dialog-message">Please give your restaurant a name:</p>
-    <input class="form-control input-lg input-restaurant-name" type="text" ng-model="restaurantName" placeholder="Name" maxlength="35">
-    <button class="btn btn-default btn-dialog" ng-disabled="!restaurantName" ng-click="closeThisDialog(restaurantName)">OK</button>
+    <p class="dialog-message">Please give your restaurant a name and choose an initial price:</p>
+
+    <form class="form-horizontal text-left">
+        <div class="form-group">
+            <label for="" class="col-xs-3 control-label">Name</label>
+            <div class="col-xs-9">
+                <input class="form-control input-restaurant-name" type="text" ng-model="restaurantName" placeholder="Name" maxlength="35">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="" class="col-xs-3 control-label">InitialPrice</label>
+            <div class="col-xs-9">
+                <input class="form-control input-restaurant-price" type="number" ng-model="initialMealPrice" placeholder="15" min="0" max="30">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-offset-3 col-xs-9">
+                <button class="btn btn-default btn-dialog" ng-disabled="!restaurantName || !initialMealPrice" ng-click="closeThisDialog(restaurantName)">OK</button>
+            </div>
+        </div>
+    </form>
 </div>
