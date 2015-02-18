@@ -27,7 +27,7 @@ angular.module('exitEntryApp')
 
     $scope.createGame = function () {
       var postData = {
-        'secret'     : 'entryexit',
+        'secret'     : 'exitentry',
         'name'       : $scope.inputData.gameName,
         'playerMax'  : $scope.inputData.playerMax
       };
@@ -35,9 +35,9 @@ angular.module('exitEntryApp')
       connectionService.post(configData.event.out.createGame, postData)
         .then(function (_data) {
 
-          dataService.setGameName(_data.name);
-          dataService.setPlayerMax(_data.playerMax);
-          dataService.setGameId(_data.id);
+          dataService.setGameName(_data.game.name);
+          dataService.setPlayerMax(_data.game.playerMax);
+          dataService.setGameId(_data.game.id);
 
           console.log(_data);
           $location.path(configData.routes.lobby);

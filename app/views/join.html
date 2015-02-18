@@ -1,10 +1,13 @@
-<div class="text-center">
-    <h1>GameID: {{ gameId }}</h1>
+<div class="text-center" xmlns="http://www.w3.org/1999/html">
+  <h1>GameID: {{ gameId }}</h1>
 
-    <input class="form-control input-lg input-username" type="text" ng-model="playerName" placeholder="Name" maxlength="10">
+  <form name="joinForm">
+    <input class="form-control input-lg input-username" name="uPlayerName" type="text" ng-model="playerName" placeholder="Name" maxlength="10">
 
-    <button class="btn btn-lg btn-primary"
+    <input  type="submit"
+            class="btn btn-lg btn-primary"
             ng-click="joinGame()"
-            ng-disabled="isJoinGameButtonDisabled || !playerName">{{ buttonLabelJoin | uppercase }}
-    </button>
+            ng-disabled="isJoinGameButtonDisabled || !playerName"
+            value="{{ buttonLabelJoin | uppercase }}" />
+  </form>
 </div>
