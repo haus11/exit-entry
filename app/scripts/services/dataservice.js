@@ -18,7 +18,72 @@ angular.module('exitEntryApp')
     var playerMax      = 0;
     var openRestaurants = [];
 
+    // Restaurant variables
+    var restaurantName      = '';
+    var servedCustomers     = [];
+    var advertisedMealPrice = 0;
+
     return {
+      getRestaurantName: function() {
+        return restaurantName;
+      },
+
+      getServedCustomers: function() {
+        return servedCustomers;
+      },
+
+      getAdvertisedPricePerMeal: function() {
+        return advertisedMealPrice;
+      },
+
+      getRestaurantBalance: function() {
+        var balance = -configData.init.fixCostsPerRestaurant;
+
+        for (var indexOfCustomer = 0; indexOfCustomer < servedCustomers.length; indexOfCustomer++)
+        {
+          balance += servedCustomers[indexOfCustomer].payedPrice - configData.init.variableCostsPerMeal;
+        }
+
+        return balance;
+      },
+
+      setAdvertisedPricePerMeal: function(_price) {
+        advertisedMealPrice = _price;
+      },
+
+      setRestaurantName: function (_name) {
+        restaurantName = _name;
+      },
+
+      getOpenRestaurants: function () {
+        return openRestaurants;
+      },
+
+      setOpenRestaurants: function(_openRestaurants) {
+        openRestaurants = _openRestaurants;
+      },
+
+      addRestaurant: function(_restaurant) {
+        openRestaurants.push(_restaurant);
+        $rootScope.$broadcast(configData.events.bc.addedRestaurant);
+      },
+
+      removeRestaurant: function(_restaurant) {
+        for (var indexOfRestaurant = 0; indexOfRestaurant < openRestaurants.length; indexOfRestaurant++)
+        {
+          if (openRestaurants[indexOfRestaurant].id === _restaurant.id)
+          {
+            openRestaurants.splice(indexOfRestaurant, 1);
+            $rootScope.$broadcast(configData.events.bc.removedRestaurant);
+            break;
+          }
+        }
+      },
+
+      hasRestaurant: function() {
+        return restaurantName !== '';
+      },
+
 
       getGameId: function () {
         return gameId;
@@ -35,7 +100,6 @@ angular.module('exitEntryApp')
       setPlayerName: function (_playerName) {
         playerName = _playerName;
       },
-
 
       getGameName: function () {
         return gameName;
@@ -67,31 +131,6 @@ angular.module('exitEntryApp')
 
       setPlayerMax: function (_playerMax) {
         playerMax = _playerMax;
-      },
-
-      getOpenRestaurants: function () {
-        return openRestaurants;
-      },
-
-      setOpenRestaurants: function(_openRestaurants) {
-        openRestaurants = _openRestaurants;
-      },
-
-      addRestaurant: function(_restaurant) {
-        openRestaurants.push(_restaurant);
-        $rootScope.$broadcast(configData.events.bc.addRestaurant, _restaurant);
-      },
-
-      removeRestaurant: function(_restaurant) {
-        for (var indexOfRestaurant = 0; indexOfRestaurant < openRestaurants.length; indexOfRestaurant++)
-        {
-          if (openRestaurants[indexOfRestaurant].id === _restaurant.id)
-          {
-            openRestaurants.splice(indexOfRestaurant, 1);
-            $rootScope.$broadcast(configData.events.bc.removedRestaurant);
-            break;
-          }
-        }
       },
 
       joinGame : function(payload) {

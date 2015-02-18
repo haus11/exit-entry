@@ -1,26 +1,62 @@
-<p><strong>My Restaurant:</strong></p>
-<table class="table">
+<a href="#/playergame" class="btn btn-success btn-back"><i class="fa fa-long-arrow-left"></i> back</a>
 
-</table>
-<p>Current advertised price per meal:</p>
-<div>
-    <button class="btn btn-default" ng-click=""><span class="fa fa-plus"></span></button>
-    <b class="number-between-buttons">15</b>
-    <button class="btn btn-default" ng-click=""><span class="fa fa-minus"></span></button>
+<h2 class="text-center"><strong>{{ restaurantName }}</strong></h2>
+
+<div class="text-center">
+    <h3>Customers: {{ servedCustomers.length }} / {{ maxCustomers }}</h3>
 </div>
 
-<table class="table">
+<div class="text-center meal-price-section">
+    <p>Current advertised price per meal:</p>
+
+    <button class="btn btn-default" ng-click="changeAdvertisedPrice(-1)"><span class="fa fa-plus"></span></button>
+    <b class="number-between-buttons">{{ currentPricePerMeal }}</b>
+    <button class="btn btn-default" ng-click="changeAdvertisedPrice(1)"><span class="fa fa-minus"></span></button>
+</div>
+
+<div class="info">
+    <table class="table table-bordered">
+        <tr>
+            <td>Variable costs per served meal</td>
+            <td>{{ variableCostsPerMeal }} $</td>
+        </tr>
+        <tr>
+            <td>Tax per served meal</td>
+            <td>{{ salesTaxPerMeal }} $</td>
+        </tr>
+    </table>
+</div>
+
+<table class="table restaurant-profit-table">
     <thead>
         <tr>
             <td>#</td>
-            <td>Price</td>
-            <td>User payed</td>
-            <td>Profit</td>
+            <td>Item</td>
+            <td>Type</td>
+            <td>Value</td>
         </tr>
     </thead>
-    <tbody>
+    <tfoot>
         <tr>
-
+            <td></td>
+            <td></td>
+            <td>Balance</td>
+            <td>{{ balance }}</td>
+        </tr>
+    </tfoot>
+    <tbody>
+        <tr class="danger">
+            <td>1</td>
+            <td>Fix costs</td>
+            <td>OUT</td>
+            <td>20</td>
+        </tr>
+        <tr class="success" ng-repeat="customer in servedCustomers">
+            <td>{{ $index + 1 }}</td>
+            <td>Customer</td>
+            <td>IN</td>
+            <td>{{ customer.payedPrice - (variableCostsPerMeal + salesTaxPerMeal) }}</td>
         </tr>
     </tbody>
+
 </table>

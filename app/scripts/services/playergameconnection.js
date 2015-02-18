@@ -20,6 +20,10 @@ angular.module('exitEntryApp')
       dataService.removeRestaurant(data);
     });
 
+    connectionService.on(configData.event.in.updateRestaurant, function(data) {
+      dataService.updateRestaurant(data);
+    });
+
     return {
 
     };

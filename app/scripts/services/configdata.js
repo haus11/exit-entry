@@ -18,8 +18,9 @@ angular.module('exitEntryApp')
           openRestaurant    : 'api/server/restaurant'
         },
         in: {
-          newRestaurant     : 'restaurant:new',
-          removeRestaurant  : 'restaurant:remove',
+          newRestaurant     : 'restaurant:created',
+          updateRestaurant  : 'restaurant:updated',
+          removeRestaurant  : 'restaurant:destroyed',
           playerJoined      : 'game:playerJoined',
           playerLeaved      : 'game:playerLeaved',
           playerReconnected : ''
@@ -35,6 +36,11 @@ angular.module('exitEntryApp')
         lobby       : '/lobby',
         createGame  : '/creategame',
         playerGame  : 'playergame'
+      },
+      init: {
+        variableCostsPerMeal  : 5,
+        fixCostsPerRestaurant : 20,
+        maxCustomers          : 4
       }
     };
   });

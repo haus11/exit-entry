@@ -13,6 +13,9 @@
   margin: 20px auto;
   max-width: 150px;
 }
+.information-panel {
+  margin-bottom: 50px;
+}
 
 .restaurant-item {
   text-align: left;
@@ -20,4 +23,25 @@
 
 .number-between-buttons {
   padding: 0 10px;
+}
+
+.btn-back {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.meal-price-section {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.restaurant-profit-table {
+  > tfoot {
+    > tr {
+      > td {
+        border-top: 1px double #aaa;
+      }
+    }
+  }
 }
