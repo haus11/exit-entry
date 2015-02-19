@@ -1,14 +1,14 @@
+<a href="#/playergame" class="btn btn-success btn-back"><i class="fa fa-angle-left"></i> back</a>
+
 <h4>Please answer the offers below: </h4>
 <div class="list-group restaurant-list">
     <a ng-repeat="offer in offers" class="list-group-item restaurant-item" ng-click="">
         <div class="offer">
             <div>
                 <button class="btn btn-success" ng-click="acceptOffer(offer)">Accept</button>
-                <button class="btn btn-info">Update</button>
+                <button class="btn btn-danger" ng-click="declineOffer(offer)">Decline</button>
             <span class="pull-right">
-                <button class="btn btn-default" ng-click="decreaseOfferedPrice(offer)"><span class="fa fa-minus"></span></button>
-                <b class="number-between-buttons">{{ offer.price }}</b>
-                <button class="btn btn-default" ng-click="increaseOfferedPrice(offer)"><span class="fa fa-plus"></span></button>
+                <strong>Income: {{ offer.price }}</strong>
             </span>
             </div>
         </div>

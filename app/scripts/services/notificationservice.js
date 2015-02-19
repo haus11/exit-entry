@@ -67,14 +67,18 @@ angular.module('exitEntryApp')
         }).closePromise;
       },
 
-      showTradeOffer: function($scope, trade) {
+      startTrading: function($scope) {
         return ngDialog.open({
           template: 'views/dialogs/showTradeOffer.html',
           scope: $scope,
           closeByEscape: false,
           closeByDocument: false,
-          controller: ['$scope', function($scope) {
-            $scope.tradeData = trade;
+          controller: ['$scope', 'dataService', 'connectionService', function($scope, dataService, connectionService) {
+            $scope.restaurant = dataService.getTradingRestaurant();
+            connectionService.post(configData.event.out.tradeStart.replace(':offerId', $scope.restaurant.offer.id), {price: $scope.restaurant.offer.price})
+              .then(function() {
+
+              });
           }]
         }).closePromise;
       }

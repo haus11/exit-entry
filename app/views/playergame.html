@@ -1,7 +1,7 @@
-<a href="#/restaurant" class="btn btn-success btn-back" ng-disabled="!restaurantButtonDisabled">My Restaurant <i class="fa fa-angle-right"></i>
+<a href="#/restaurant" class="btn btn-success btn-back" ng-hide="!restaurantButtonDisabled">My Restaurant <i class="fa fa-angle-right"></i>
 </a>
 
-<a href="#/trading" class="btn btn-danger btn-trade-request">Trade requests <i class="fa fa-angle-right"></i></a>
+<a href="#/trading" ng-hide="!restaurantButtonDisabled" class="btn btn-danger btn-trade-request">Trade requests <i class="fa fa-angle-right"></i></a>
 
 <div class="playergame-section">
     <div class="information-panel">

@@ -15,7 +15,15 @@ angular.module('exitEntryApp')
 
 
     $scope.acceptOffer = function(offer) {
-      connectionService.put(configData.event.out.tradeAccept.replace(':tradeId', offer.id));
+      connectionService.put(configData.event.out.tradeAccept.replace(':tradeId', offer.id))
+        .then(function() {
+          dataService.removeOffer(offer.id);
+
+        });
+    };
+
+    $scope.declineOffer = function(offer) {
+      console.log("Trade declined");
     };
 
     $scope.increaseOfferedPrice = function(offer) {

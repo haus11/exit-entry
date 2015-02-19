@@ -25,7 +25,8 @@ angular.module('exitEntryApp')
           startSurvey       : '/ee/survey',
           surveyVote        : '/ee/survey/vote',
           tradeUpdate       : '/trade/:tradeId',
-          tradeAccept       : '/trade/:tradeId/accept'
+          tradeAccept       : '/trade/:tradeId/accept',
+          tradeStart        : '/offer/:offerId/trade'
         },
         in: {
           restaurantCreated : 'restaurant:created',
@@ -39,7 +40,9 @@ angular.module('exitEntryApp')
           surveyTick        : 'survey:tick',
           surveyFinished    : 'survey:finished',
           surveyTimeout     : 'survey:timeout',
-          tradeOffer        : 'trade:created'
+          tradeOffer        : 'trade:created',
+          tradeAccepted     : 'trade:accepted',
+          allRestaurantsCreated : 'survey:allRestaurantsCreated'
 
         },
         bc: {

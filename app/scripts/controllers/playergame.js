@@ -15,10 +15,15 @@ angular.module('exitEntryApp')
     $scope.restaurantButtonDisabled = dataService.hasRestaurant();
     $scope.surveyTickTime           = 30;
 
+    var isTradingAllowed = false;
+
 
     $scope.startTrading = function(restaurant) {
-      dataService.setTradingRestaurant(restaurant);
-      $location.path('/trading');
+      if (isTradingAllowed)
+      {
+        dataService.setTradingRestaurant(restaurant);
+        notificationService.startTrading($scope);
+      }
     };
 
     connectionService.on(configData.event.in.surveyStarted, function() {
@@ -42,15 +47,18 @@ angular.module('exitEntryApp')
     });
 
     connectionService.on(configData.event.in.tradeOffer, function(trade) {
-      notificationService.showTradeOffer($scope, trade)
-        .then(function() {
-
-        })
-        .catch(function(_reason) {
-
-        });
+      dataService.addOffer(trade);
     });
 
+    connectionService.on(configData.event.in.tradeAccepted, function() {
+      console.log('Trade accepted');
+      notificationService.closeAllDialogs();
+      isTradingAllowed = false;
+    });
+
+    connectionService.on(configData.event.in.allRestaurantsCreated, function() {
+      isTradingAllowed = true;
+    });
 
     connectionService.on(configData.event.in.surveyConsult, function() {
       notificationService.closeAllDialogs();

@@ -26,7 +26,6 @@ angular.module('exitEntryApp')
     var tradingRestaurant = {};
     var offers = [];
 
-    offers.push({id: 1, price: 15});
 
 
     connectionService.on(configData.event.in.restaurantCreated, function(restaurant) {
@@ -53,6 +52,10 @@ angular.module('exitEntryApp')
 
       getServedCustomers: function() {
         return servedCustomers;
+      },
+
+      addServedCustomer: function(customer) {
+        servedCustomers.push(customer);
       },
 
       getAdvertisedPricePerMeal: function() {
