@@ -44,6 +44,11 @@ angular.module('exitEntryApp')
       }
     });
 
+    function generateNumber(_low, _high) {
+      _high++;
+      return Math.floor((Math.random() * (_high - _low) + _low));
+    };
+
 
     return {
       getRestaurantName: function() {
@@ -172,7 +177,7 @@ angular.module('exitEntryApp')
       },
 
       getBuyerValue: function() {
-        return buyerValue;
+        return generateNumber(8, 25);
       },
 
       isGameMaster: function () {
