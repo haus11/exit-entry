@@ -23,6 +23,10 @@ angular.module('exitEntryApp')
     var servedCustomers     = [];
     var advertisedMealPrice = 0;
 
+    var tradingRestaurant = {};
+    var offers = [];
+
+    offers.push({id: 1, price: 15});
 
 
     connectionService.on(configData.event.in.restaurantCreated, function(restaurant) {
@@ -85,6 +89,14 @@ angular.module('exitEntryApp')
         openRestaurants     = [];
       },
 
+      setTradingRestaurant: function(restaurant) {
+        tradingRestaurant = restaurant;
+      },
+
+      getTradingRestaurant: function() {
+        return tradingRestaurant;
+      },
+
       setOpenRestaurants: function(_openRestaurants) {
         openRestaurants = _openRestaurants;
       },
@@ -106,6 +118,25 @@ angular.module('exitEntryApp')
 
       hasRestaurant: function() {
         return restaurantName !== '';
+      },
+
+      getOffers: function() {
+        return offers;
+      },
+
+      addOffer: function(offer) {
+        offers.push(offer);
+      },
+
+      removeOffer: function(offerId) {
+        for (var indexOfOffer = 0; indexOfOffer < offers.length; indexOfOffer++)
+        {
+          if (offers[indexOfOffer].id === offerId)
+          {
+            offers.splice(indexOfOffer, 1);
+            break;
+          }
+        }
       },
 
 

@@ -50,6 +50,22 @@ angular
         templateUrl: 'views/gamemaster.html',
         controller: 'GamemasterCtrl'
       })
+      .when('/trading', {
+        templateUrl: 'views/trade/trade.html',
+        controller: 'TradingCtrl'
+      })
+      .when('/trade-next', {
+        templateUrl: 'views/trade/trade_succ.html',
+        controller: 'TradeCtrl'
+      })
+      .when('/trade-failed', {
+        templateUrl: 'views/trade/trade_fail.html',
+        controller: 'TradeCtrl'
+      })
+      .when('/trade-accepted', {
+        templateUrl: 'views/trade/trade_accept.html',
+        controller: 'TradeCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

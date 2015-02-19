@@ -8,7 +8,7 @@
  * Controller of the exitEntryApp
  */
 angular.module('exitEntryApp')
-  .controller('PlayergameCtrl', function ($rootScope, $scope, dataService, configData, connectionService, notificationService) {
+  .controller('PlayergameCtrl', function ($rootScope, $location, $scope, dataService, configData, connectionService, notificationService) {
     $scope.buyerValue               = dataService.getBuyerValue();
     $scope.currentSession           = dataService.getCurrentSession();
     $scope.currentOpenRestaurants   = dataService.getOpenRestaurants();
@@ -16,17 +16,20 @@ angular.module('exitEntryApp')
     $scope.surveyTickTime           = 30;
 
 
-    $scope.startTrading = function() {
-      console.log('Trading...');
+    $scope.startTrading = function(restaurant) {
+      dataService.setTradingRestaurant(restaurant);
+      $location.path('/trading');
     };
 
     connectionService.on(configData.event.in.surveyStarted, function() {
-      notificationService.notify($scope, 'Waiting..', 'Please be patient you. It will soon be your turn...');
+      notificationService.notify($scope, 'Waiting..', 'Please be patient. It will soon be your turn...');
     });
 
     connectionService.on(configData.event.in.surveyTick, function(data) {
       console.log('Tick: ' + data.timeLeft);
       $scope.surveyTickTime = data;
+
+      $rootScope.$broadcast('timeout:tick', data.timeLeft / 1000);
     });
 
     connectionService.on(configData.event.in.surveyTimeout, function() {
@@ -36,6 +39,16 @@ angular.module('exitEntryApp')
 
     connectionService.on(configData.event.in.surveyFinished, function() {
       console.log('finished');
+    });
+
+    connectionService.on(configData.event.in.tradeOffer, function(trade) {
+      notificationService.showTradeOffer($scope, trade)
+        .then(function() {
+
+        })
+        .catch(function(_reason) {
+
+        });
     });
 
 

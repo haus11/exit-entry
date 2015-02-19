@@ -38,7 +38,7 @@ angular.module('exitEntryApp')
           $scope.lobbyData.gameName        = _data.game.name;
           $scope.lobbyData.playerList      = _data.game.user;
           $scope.lobbyData.playerMax       = _data.game.playerMax;
-          $scope.lobbyData.numberOfPlayers = _data.game.user.length - 1;
+          $scope.lobbyData.numberOfPlayers = _data.game.user.length;
 
 
         })
@@ -90,9 +90,6 @@ angular.module('exitEntryApp')
       connectionService.put(configData.event.out.startGame.replace(':id', gameId))
         .then(function() {
           return connectionService.post(configData.event.out.startSession);
-        })
-        .then(function() {
-          return connectionService.post(configData.event.out.newRound);
         })
         .then(function() {
           $location.path('/gamemaster');

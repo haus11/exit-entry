@@ -1,8 +1,9 @@
 <div class="ngdialog-inner text-center">
-    <p class="dialog-message">Would you like to open a new restaurant with the following conditions?</p>
+    <p><strong>Timeout in: {{ timeToTimeout }}</strong></p>
+
+    <p class="dialog-message">Would you like to open a new restaurant?</p>
     <div class="text-left restaurant-dialog-conditions">
-        <strong>20$</strong> Fix costs<br>
-        <strong>5$</strong> Variable costs
+        <p>Remember: the fixed costs for a restaurant are <strong>20 $</strong> and the variable costs per meal are <strong>5 $</strong>.</p>
     </div>
 
     <button class="btn btn-default btn-dialog btn-dialog-open-restaurant" ng-click="closeThisDialog('yes')">YES</button>

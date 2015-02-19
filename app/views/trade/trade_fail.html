@@ -1,0 +1,41 @@
+
+<div class="container text-center">
+  <h3>
+    <translate>TRADE_TITLE</translate> <small><translate>WORD_WITH</translate> {{ trade.partner }}</small>
+  </h3>
+  <div class="row">
+    <p translate>TRADE_OFFER_DECLINED</p>
+  </div>
+  <div class="row row-buffer">
+    <span class="fa fa-thumbs-o-down fa-4x red"></span>
+  </div>
+  <div class="row row-buffer">
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-default" ng-click="increasePrice()">
+        <span class="fa fa-angle-up"></span>
+      </button>
+      <button type="button" class="btn btn-default">
+        {{newOffer}}
+      </button>
+      <button type="button" class="btn btn-default" ng-click="decreasePrice()">
+        <span class="fa fa-angle-down"></span>
+      </button>
+    </div>
+  </div>
+  <div class="row row-buffer">
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-default">
+        <translate>TRADE_OFFER</translate> <span class="label label-success label-as-badge">{{offer}}</span>
+      </button>
+      <button type="button" class="btn btn-default">
+        <translate>TRADE_PROFIT</translate> <span class="label label-success label-as-badge">{{profit}}</span>
+      </button>
+    </div>
+  </div>
+  <div class="row row-buffer">
+    <button class="btn btn-default" translate>SYSTEM_ACCEPT</button>
+  </div>
+  <div class="row row-buffer">
+    <a ng-href="#/offers"><button class="btn btn-warning" translate>SYSTEM_DECLINE</button></a>
+  </div>
+</div>

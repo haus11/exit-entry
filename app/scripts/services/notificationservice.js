@@ -31,7 +31,14 @@ angular.module('exitEntryApp')
             template: 'views/dialogs/openRestaurant.html',
             scope: $scope,
             closeByEscape: false,
-            closeByDocument: false
+            closeByDocument: false,
+            controller: ['$scope', '$rootScope', function($scope, $rootScope) {
+              $scope.timeToTimeout = 30;
+
+              $rootScope.$on('timeout:tick', function(event, data) {
+                $scope.timeToTimeout = data;
+              });
+            }]
           }).closePromise.then(function(data) {
               if (data.value === 'yes')
               {
@@ -57,6 +64,18 @@ angular.module('exitEntryApp')
           scope: $scope,
           closeByEscape: false,
           closeByDocument: false
+        }).closePromise;
+      },
+
+      showTradeOffer: function($scope, trade) {
+        return ngDialog.open({
+          template: 'views/dialogs/showTradeOffer.html',
+          scope: $scope,
+          closeByEscape: false,
+          closeByDocument: false,
+          controller: ['$scope', function($scope) {
+            $scope.tradeData = trade;
+          }]
         }).closePromise;
       }
     };

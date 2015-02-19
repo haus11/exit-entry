@@ -1,0 +1,20 @@
+<div class="container text-center">
+  <h3>
+    Trading <small> {{ trade.partner }}</small>
+  </h3>
+  <div class="row">
+    <p>Trade successful!</p>
+  </div>
+  <div class="row row-buffer">
+    <span class="fa fa-thumbs-o-up fa-4x green"></span>
+  </div>
+  <div class="row row-buffer">
+    <button type="button" class="btn btn-default">
+      Profit <span ng-class="{'label-success': profit > 0, 'label-danger': profit <= 0}" class="label label-as-badge">{{profit}}</span>
+    </button>
+  </div>
+  <div class="row row-buffer">
+    <a ng-href="#/playergame"><button class="btn btn-info">OK</button></a>
+  </div>
+</div>
+

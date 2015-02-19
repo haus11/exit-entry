@@ -14,7 +14,6 @@
 
 .restaurant-dialog-conditions {
   margin: 20px auto;
-  max-width: 150px;
 }
 .information-panel {
   margin-bottom: 50px;
@@ -30,8 +29,29 @@
 
 .btn-back {
   position: absolute;
-  right: 10px;
-  top: 10px;
+  height: 39px;
+  right: 0;
+  top: 0;
+  border-radius: 0;
+
+  .fa-angle-right {
+    padding-left: 10px;
+  }
+
+  .fa-angle-left {
+    padding-right: 10px;
+  }
+}
+
+.btn-trade-request {
+  position: absolute;
+  right: 0;
+  border-radius: 0;
+  top: 50px;
+}
+
+.btn[disabled] {
+  opacity: 1;
 }
 
 .meal-price-section {

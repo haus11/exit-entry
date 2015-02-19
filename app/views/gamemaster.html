@@ -1,12 +1,35 @@
 <h3>Gamemaster Overview:</h3>
 
-<div class="gamemaster-button-group">
-    <button class="btn btn-success btn-lg" ng-click="startRound()">Start Round</button>
-    <button class="btn btn-success btn-lg" ng-click="endRound()">End Round</button>
+<div class="gamemaster-button-group row text-center">
+    <div class="col-xs-6"><button class="btn btn-success btn-lg btn-block" ng-click="startRound()">Start Round</button></div>
+    <div class="col-xs-6"><button class="btn btn-success btn-lg btn-block" ng-click="endRound()">End Round</button></div>
+
+
 </div>
 
-<div class="gamemaster-button-group">
-    <button class="btn btn-hint btn-lg" ng-click="startSession()">Start Session</button>
-    <button class="btn btn-hint btn-lg" ng-click="endSession()">End Session</button>
+<div class="gamemaster-button-group row text-center">
+    <div class="col-xs-6">
+        <button class="btn btn-hint btn-lg btn-block" ng-click="startSession()">Start Session</button>
+    </div>
+    <div class="col-xs-6">
+        <button class="btn btn-hint btn-lg btn-block" ng-click="endSession()">End Session</button>
+    </div>
 </div>
 
+<table class="table gamemaster-overview-table">
+    <thead>
+    <tr>
+        <td>#</td>
+        <td>Buyer Value</td>
+        <td>Meal Price</td>
+        <td>Profit</td>
+    </tr>
+    <tbody>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>

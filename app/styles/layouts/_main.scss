@@ -6,3 +6,31 @@
 .gamemaster-button-group {
   margin-top: 15px;
 }
+
+.gamemaster-overview-table {
+  margin-top: 40px;
+}
+
+.page-head {
+  background-color: $brand-primary;
+  padding: 2px 5px;
+  margin: 0 -10px;
+
+  .fa-money {
+    margin-right: 10px;
+    font-size: 20px;
+    margin-top: -2px;
+  }
+  .page-head-title {
+    font-weight: bold;
+    color: $body-bg;
+  }
+}
+
+.ngdialog.ngdialog-theme-default .ngdialog-content {
+  border-radius: 0;
+}
+
+.profit {
+  margin-top: 5px;
+}

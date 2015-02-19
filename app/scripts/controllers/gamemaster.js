@@ -10,18 +10,22 @@
 angular.module('exitEntryApp')
   .controller('GamemasterCtrl', function ($scope, configData, connectionService) {
     $scope.startRound = function() {
-      connectionService.post(configData.event.out.startSurvey);
+      connectionService.post(configData.event.out.newRound)
+        .then(function() {
+          return connectionService.post(configData.event.out.startSurvey);
+        })
+        .catch();
     };
 
     $scope.endRound = function() {
-      console.log('End Round');
+      connectionService.post(configData.event.out.endRound);
     };
 
     $scope.startSession = function() {
-      console.log('Start Session');
+      connectionService.post(configData.event.out.startSession);
     };
 
     $scope.endSession = function() {
-      console.log('End Session');
+      connectionService.post(configData.event.out.endSession);
     };
   });
