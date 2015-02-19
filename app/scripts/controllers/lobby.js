@@ -8,7 +8,7 @@
  * Controller of the exitEntryApp
  */
 angular.module('exitEntryApp')
-  .controller('LobbyCtrl', function ($scope, $log, dataService, configData, connectionService, notificationService) {
+  .controller('LobbyCtrl', function ($scope, $location, $log, dataService, configData, connectionService, notificationService) {
 
     $scope.lobbyData =
     {
@@ -33,10 +33,14 @@ angular.module('exitEntryApp')
       // -----------------------------------------------------------------------------
       dataService.joinGame({ gameId: dataService.getGameId(), playerName: dataService.getPlayerName() })
         .then(function(_data) {
+          _data.game.user.splice(0,1);
+
           $scope.lobbyData.gameName        = _data.game.name;
           $scope.lobbyData.playerList      = _data.game.user;
           $scope.lobbyData.playerMax       = _data.game.playerMax;
           $scope.lobbyData.numberOfPlayers = _data.game.user.length - 1;
+
+
         })
         .catch(function(reason) {
           notificationService.notify($scope, 'Info', reason);
@@ -73,28 +77,28 @@ angular.module('exitEntryApp')
       }
     });
 
-    $scope.startGame = function () {
+    connectionService.on(configData.event.in.gameStarted, function() {
+      if (!$scope.isGameMaster)
+      {
+        $location.path('/playergame');
+      }
+    });
 
-      //var url = config.api.gameStart.replace('id', gameData.getGameId());
-      //connectionService.put(url, null)
-      //  .then(function () {
-      //    gameData.increaseSessionNumber();
-      //
-      //    url = config.api.sessionNew.replace('gameId', gameData.getServerId());
-      //    return connectionService.post(url, null);
-      //  })
-      //  .then(function () {
-      //    gameData.resetRoundNumber();
-      //    url = config.api.roundNew.replace('gameId', gameData.getServerId());
-      //    url = url.replace('sessionCount', gameData.getSessionNumber());
-      //    return connectionService.post(url, null);
-      //  })
-      //  .then(function (_data) {
-      //    console.log(_data);
-      //    $location.path(config.routes.managerManage);
-      //  })
-      //  .catch(function (_reason) {
-      //    new Notification('Could not start Game: ' + _reason);
-      //  });
+    $scope.startGame = function () {
+      var gameId =  dataService.getGameId();
+
+      connectionService.put(configData.event.out.startGame.replace(':id', gameId))
+        .then(function() {
+          return connectionService.post(configData.event.out.startSession);
+        })
+        .then(function() {
+          return connectionService.post(configData.event.out.newRound);
+        })
+        .then(function() {
+          $location.path('/gamemaster');
+        })
+        .catch(function(_reason) {
+          console.log(_reason);
+        });
     };
   });

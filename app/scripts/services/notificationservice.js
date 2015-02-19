@@ -8,17 +8,21 @@
  * Service in the exitEntryApp.
  */
 angular.module('exitEntryApp')
-  .service('notificationService', function ($q, ngDialog) {
+  .service('notificationService', function ($q, ngDialog, connectionService, configData) {
     return {
       notify: function($scope, type, message) {
         $scope.dialogModel = {};
         $scope.dialogModel.type = type;
         $scope.dialogModel.message = message;
 
-        ngDialog.open({
+        return ngDialog.open({
           template: 'views/dialogs/default.html',
           scope: $scope
-        });
+        }).closePromise;
+      },
+
+      closeAllDialogs: function() {
+        ngDialog.closeAll();
       },
 
       openRestaurant: function($scope) {
@@ -31,11 +35,17 @@ angular.module('exitEntryApp')
           }).closePromise.then(function(data) {
               if (data.value === 'yes')
               {
-                resolve();
+                connectionService.post(configData.event.out.surveyVote, { restaurant: true })
+                  .then(function() {
+                    resolve();
+                  });
               }
               else
               {
-                reject('User does not want to open a restaurant.');
+                connectionService.post(configData.event.out.surveyVote, { restaurant: false })
+                  .then(function() {
+                    reject('User does not want to open a restaurant.');
+                  });
               }
             });
         });

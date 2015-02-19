@@ -13,7 +13,7 @@ angular.module('exitEntryApp')
     var gameName       = '';
     var gameId         = 0;
     var buyerValue     = 0;
-    var currentSession = 1;
+    var currentSession = 0;
     var isGameMaster   = false;
     var playerMax      = 0;
     var openRestaurants = [];
@@ -22,6 +22,25 @@ angular.module('exitEntryApp')
     var restaurantName      = '';
     var servedCustomers     = [];
     var advertisedMealPrice = 0;
+
+
+
+    connectionService.on(configData.event.in.restaurantCreated, function(restaurant) {
+      console.log(restaurant);
+      openRestaurants.push(restaurant);
+    });
+
+    connectionService.on(configData.event.in.restaurantUpdated, function(restaurant) {
+      for (var indexOfRestaurant = 0; indexOfRestaurant < openRestaurants.length; indexOfRestaurant++)
+      {
+        if (openRestaurants[indexOfRestaurant].id === restaurant.id)
+        {
+          openRestaurants[indexOfRestaurant].offer.price = restaurant.offer.price;
+          break;
+        }
+      }
+    });
+
 
     return {
       getRestaurantName: function() {
@@ -59,13 +78,19 @@ angular.module('exitEntryApp')
         return openRestaurants;
       },
 
+      resetRoundData: function() {
+        restaurantName      = '';
+        advertisedMealPrice = 0;
+        servedCustomers     = [];
+        openRestaurants     = [];
+      },
+
       setOpenRestaurants: function(_openRestaurants) {
         openRestaurants = _openRestaurants;
       },
 
       addRestaurant: function(_restaurant) {
         openRestaurants.push(_restaurant);
-        $rootScope.$broadcast(configData.events.bc.addedRestaurant);
       },
 
       removeRestaurant: function(_restaurant) {
@@ -74,7 +99,6 @@ angular.module('exitEntryApp')
           if (openRestaurants[indexOfRestaurant].id === _restaurant.id)
           {
             openRestaurants.splice(indexOfRestaurant, 1);
-            $rootScope.$broadcast(configData.events.bc.removedRestaurant);
             break;
           }
         }
@@ -131,6 +155,12 @@ angular.module('exitEntryApp')
 
       setPlayerMax: function (_playerMax) {
         playerMax = _playerMax;
+      },
+
+      increaseSession: function() {
+        currentSession++;
+
+        return currentSession;
       },
 
       joinGame : function(payload) {

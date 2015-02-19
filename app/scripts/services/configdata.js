@@ -15,15 +15,27 @@ angular.module('exitEntryApp')
         out: {
           createGame        : '/game',
           joinGame          : '/game/:id/join',
-          openRestaurant    : 'api/server/restaurant'
+          openRestaurant    : '/ee/restaurant',
+          updateRestaurant  : '/ee/restaurant',
+          startGame         : '/game/:id/start',
+          startSession      : '/game/session',
+          newRound          : '/game/session/round',
+          startSurvey       : '/ee/survey',
+          surveyVote        : '/ee/survey/vote'
         },
         in: {
-          newRestaurant     : 'restaurant:created',
-          updateRestaurant  : 'restaurant:updated',
-          removeRestaurant  : 'restaurant:destroyed',
+          restaurantCreated : 'restaurant:created',
+          restaurantUpdated : 'restaurant:updated',
           playerJoined      : 'game:playerJoined',
           playerLeaved      : 'game:playerLeaved',
-          playerReconnected : ''
+          gameStarted       : 'game:started',
+          playerReconnected : '',
+          surveyStarted     : 'survey:started',
+          surveyConsult     : 'survey:consult',
+          surveyTick        : 'survey:tick',
+          surveyFinished    : 'survey:finished',
+          surveyTimeout     : 'survey:timeout'
+
         },
         bc: {
           addedRestaurant   : 'addedRestaurant',

@@ -46,6 +46,10 @@ angular
         templateUrl: 'views/restaurant.html',
         controller: 'RestaurantCtrl'
       })
+      .when('/gamemaster', {
+        templateUrl: 'views/gamemaster.html',
+        controller: 'GamemasterCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

@@ -8,10 +8,10 @@
     <h3>Choose a restaurant to eat:</h3>
     <div class="list-group restaurant-list">
         <li ng-hide="currentOpenRestaurants.length">There are no open restaurants yet.</li>
-        <a ng-repeat="restaurant in currentOpenRestaurants" class="list-group-item restaurant-item">
+        <a ng-repeat="restaurant in currentOpenRestaurants" class="list-group-item restaurant-item" ng-click="startTrading(restaurant)">
             <div class="restaurant">
-                <span class="title"><strong>{{ restaurant.title }}</strong></span>
-                <span class="badge price pull-right">{{ restaurant.currentPrice }} €</span>
+                <span class="title"><strong>{{ restaurant.name }}</strong></span>
+                <span class="badge price pull-right">{{ restaurant.offer.price }} €</span>
             </div>
         </a>
     </div>
